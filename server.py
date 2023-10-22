@@ -1,4 +1,5 @@
 import socket as s
+import random
 
 def verify_checksum(data, checksum):
     byte_count = len(data)
@@ -19,7 +20,6 @@ def verify_checksum(data, checksum):
 
     return checksum_value == checksum
 
-
 if __name__ == "__main__":
     
     HOST = s.gethostbyname(s.gethostname())
@@ -34,10 +34,17 @@ if __name__ == "__main__":
         data = data.decode("utf-8")
 
         print("Client: {data}")
-        if verify_checksum(data.encode("utf-8"), checksum):
-            print("Checksum is valid.")
+
+        #random simulation check for the packet integrity
+        integrity_error = random.randint(0, 100)
+        if integrity_error <= 25:
+            print("Pacote contém erro de integridade.")
+            server.sendto(b"ERRO", addr)
         else:
-            print("Checksum is invalid.")
+            if verify_checksum(data.encode("utf-8"), checksum):
+                print("Checksum is valid.")
+            else:
+                print("Checksum is invalid.")
 
         data = data.upper()
         data = data.encode("utf-8")

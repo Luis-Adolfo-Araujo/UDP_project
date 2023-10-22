@@ -35,4 +35,7 @@ if __name__ == "__main__":
         client.sendto(data, addr)
         data, addr = client.recvfrom(1024)
         data = data.decode("utf-8")
-        print(len(data))
+        if data == "ERRO":
+            print("Falha de integridade")
+        else:
+            print(len(data))
