@@ -8,7 +8,7 @@ if __name__ == "__main__":
     HOST = s.gethostbyname(s.gethostname())
     PORT = 8080
     server = s.socket(s.AF_INET, s.SOCK_DGRAM)
-    server.bind((HOST, PORT)
+    server.bind((HOST, PORT))
     expected_seq_num = 0
 
     while True:
