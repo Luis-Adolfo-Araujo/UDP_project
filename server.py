@@ -20,6 +20,18 @@ def verify_checksum(data, checksum):
 
     return checksum_value == checksum
 
+def ping(host, port):
+    data = b"pong"
+    client = s.socket(s.AF_INET, s.SOCK_DGRAM)
+    addr = (host, port)
+    client.sendto(data, addr)
+
+def ping_response(host, port):
+    data = b"pong"
+    client = s.socket(s.AF_INET, s.SOCK_DGRAM)
+    addr = (host, port)
+    client.sendto(data, addr)
+
 if __name__ == "__main__":
     
     HOST = s.gethostbyname(s.gethostname())
